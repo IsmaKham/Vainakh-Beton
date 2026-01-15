@@ -1,0 +1,2289 @@
+[file name]: index.html
+[file content begin]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вай Бетон | Производство качественного бетона с 1984 года</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A5C8B;
+            --primary-dark: #1A3A5F;
+            --primary-light: #4A8BC5;
+            --secondary: #C8A165;
+            --secondary-dark: #A88345;
+            --accent: #E63946;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --gray-light: #E9ECEF;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Плавные переходы */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fefefe;
+            overflow-x: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Анимация для появления секций */
+        section {
+            padding: 100px 0;
+            position: relative;
+            animation: slideUp 0.8s ease-out both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Задержки для разных секций */
+        .hero { animation-delay: 0.1s; }
+        .calculator-section { animation-delay: 0.2s; }
+        .composition-section { animation-delay: 0.3s; }
+        .contact-section { animation-delay: 0.4s; }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: var(--primary-dark);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 30px auto 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(42, 92, 139, 0.2);
+        }
+        
+        .logo-icon i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        
+        .logo-text span {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 90px;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+        
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+        }
+        
+        .mobile-menu ul li {
+            margin: 0 0 20px 0;
+        }
+        
+        .mobile-menu ul li a {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 10px 0;
+        }
+        
+        .mobile-menu ul li a:hover {
+            color: var(--secondary);
+            padding-left: 10px;
+        }
+        
+        /* Hero */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            background: linear-gradient(rgba(26, 58, 95, 0.85), rgba(42, 92, 139, 0.9)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 30px;
+            color: white;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            margin-right: 60px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            line-height: 1;
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Calculator */
+        .calculator-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+        
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .calculator-box {
+            background-color: white;
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .calculator-box:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+        
+        .calculator-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .calculator-header h3 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+        }
+        
+        .calculator-header p {
+            color: var(--gray);
+            margin-top: 10px;
+        }
+        
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--gray-light);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 15px 10px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -2px;
+            left: 0;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 92, 139, 0.1);
+        }
+        
+        .dimensions-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .dimension-input {
+            text-align: center;
+        }
+        
+        .dimension-input label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        .dimension-input input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .dimension-input input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 92, 139, 0.1);
+        }
+        
+        .dimension-unit {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .calculated-volume {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+            color: white;
+        }
+        
+        .volume-label {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .volume-value {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .volume-unit {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        .range-slider {
+            width: 100%;
+            margin-top: 10px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .range-slider::-webkit-slider-thumb:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        .volume-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .volume-display span {
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(42, 92, 139, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to right, var(--secondary-dark), var(--secondary));
+            box-shadow: 0 10px 20px rgba(200, 161, 101, 0.3);
+        }
+        
+        .results-box {
+            background-color: white;
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .price-list {
+            margin-bottom: 40px;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+        
+        .price-item:hover {
+            background-color: rgba(42, 92, 139, 0.03);
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: -15px;
+            margin-right: -15px;
+            border-radius: var(--border-radius);
+        }
+        
+        .grade {
+            display: flex;
+            align-items: center;
+        }
+        
+        .grade-mark {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+        
+        .grade-text h4 {
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+        
+        .grade-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .calculation-result {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: var(--border-radius);
+            padding: 40px;
+            color: white;
+            text-align: center;
+            display: none;
+        }
+        
+        .calculation-result.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .result-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .result-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .result-detail {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .result-detail .label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .result-detail .value {
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        .result-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Composition */
+        .composition-section {
+            background-color: white;
+        }
+        
+        .composition-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .composition-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        .composition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .composition-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .composition-card:nth-child(1) { animation-delay: 0.1s; }
+        .composition-card:nth-child(2) { animation-delay: 0.2s; }
+        .composition-card:nth-child(3) { animation-delay: 0.3s; }
+        .composition-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .composition-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .composition-card-header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .composition-card-header h4 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 0;
+        }
+        
+        .composition-card-body {
+            padding: 30px;
+        }
+        
+        .composition-property {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .composition-property:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .property-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .property-value {
+            color: var(--dark);
+        }
+        
+        .origin-badge {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .composition-note {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .contact-info {
+            background-color: white;
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 35px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(42, 92, 139, 0.2);
+        }
+        
+        .contact-text h4 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 40px;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-link.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+        
+        .social-link.telegram {
+            background: linear-gradient(135deg, #0088cc, #005c8a);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-map {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 100%;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+        
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+        
+        /* Experience Badge */
+        .experience-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+        
+        .badge {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white;
+            padding: 20px;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(200, 161, 101, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 10px 30px rgba(200, 161, 101, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(200, 161, 101, 0.7);
+            }
+            100% {
+                box-shadow: 0 10px 30px rgba(200, 161, 101, 0.4);
+            }
+        }
+        
+        .badge-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .badge-text {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        /* Cart Notification */
+        .cart-notification {
+            position: fixed;
+            top: 120px;
+            right: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 10000;
+            max-width: 350px;
+            animation: slideInRight 0.3s ease-out;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Исправление для скрытия мобильного меню на десктопе */
+        @media (min-width: 993px) {
+            .mobile-menu {
+                display: none !important;
+            }
+            
+            .mobile-menu-btn {
+                display: none !important;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .calculator-container, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .dimensions-inputs {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+            }
+            
+            .stat-item {
+                margin-right: 40px;
+                margin-bottom: 30px;
+            }
+            
+            .result-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                display: none !important;
+            }
+            
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 150px;
+                padding-bottom: 80px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .calculator-box, .results-box, .contact-info {
+                padding: 40px 30px;
+            }
+            
+            .result-value {
+                font-size: 2.8rem;
+            }
+            
+            .result-detail {
+                min-width: 120px;
+            }
+            
+            .experience-badge {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .badge {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .badge-number {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stat-item {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .dimensions-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Вай Бетон</h1>
+                    <span>С 1984 года</span>
+                </div>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="./index.html" style="color: var(--secondary);">Главная</a></li>
+                    <li><a href="./composition.html">Состав</a></li>
+                    <li><a href="./calculator.html">Калькулятор</a></li>
+                    <li><a href="./contact.html">Контакты</a></li>
+                    <li><a href="./korzina.html" style="color: var(--secondary);">Корзина <span class="cart-count">(0)</span></a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="mobile-menu" id="mobileMenu">
+                <ul>
+                    <li><a href="./index.html" style="color: var(--secondary);">Главная</a></li>
+                    <li><a href="./composition.html">Состав</a></li>
+                    <li><a href="./calculator.html">Калькулятор</a></li>
+                    <li><a href="./contact.html">Контакты</a></li>
+                    <li><a href="./korzina.html" style="color: var(--secondary);">Корзина <span class="cart-count">(0)</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Вай Бетон: Качество, проверенное временем</h1>
+                <p>Более 40 лет мы производим бетон высочайшего качества для строительства Москвы и области. Наш опыт и традиции — гарантия надежности.</p>
+                <a href="./calculator.html" class="btn btn-secondary">Рассчитать стоимость</a>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-text">Лет на рынке</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-text">Выполненных проектов</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-text">Контроль качества</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>Калькулятор бетона</h2>
+                <p class="section-subtitle">Рассчитайте точную стоимость бетона с учетом марки и объема. Цены указаны за 1 м³ с учетом НДС.</p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator-box">
+                    <div class="calculator-header">
+                        <h3>Расчет стоимости</h3>
+                        <p>Выберите удобный способ расчета объема</p>
+                    </div>
+                    
+                    <div class="calculator-tabs">
+                        <button class="tab-btn active" data-tab="dimensions-tab">По габаритам</button>
+                        <button class="tab-btn" data-tab="volume-tab">По объему</button>
+                    </div>
+                    
+                    <form id="concreteCalculator">
+                        <!-- Вкладка расчета по габаритам -->
+                        <div class="tab-content active" id="dimensions-tab">
+                            <div class="form-group">
+                                <label class="form-label">Габариты конструкции (м)</label>
+                                <div class="dimensions-inputs">
+                                    <div class="dimension-input">
+                                        <label for="length">Длина</label>
+                                        <input type="number" id="length" min="0.1" max="100" step="0.1" value="5">
+                                        <span class="dimension-unit">метров</span>
+                                    </div>
+                                    <div class="dimension-input">
+                                        <label for="width">Ширина</label>
+                                        <input type="number" id="width" min="0.1" max="100" step="0.1" value="3">
+                                        <span class="dimension-unit">метров</span>
+                                    </div>
+                                    <div class="dimension-input">
+                                        <label for="height">Высота/Толщина</label>
+                                        <input type="number" id="height" min="0.05" max="10" step="0.05" value="0.2">
+                                        <span class="dimension-unit">метров</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="calculated-volume">
+                                    <div class="volume-label">Рассчитанный объем бетона:</div>
+                                    <div class="volume-value" id="calculatedVolume">3.00</div>
+                                    <div class="volume-unit">м³</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="concreteGrade1" class="form-label">Марка бетона</label>
+                                <select id="concreteGrade1" class="form-control">
+                                    <option value="100">М100 (тощий бетон) - 3 500 ₽/м³</option>
+                                    <option value="150">М150 (подбетонка) - 3 700 ₽/м³</option>
+                                    <option value="200" selected>М200 (фундаменты, стяжки) - 3 900 ₽/м³</option>
+                                    <option value="250">М250 (монолитные стены) - 4 100 ₽/м³</option>
+                                    <option value="300">М300 (фундаменты, перекрытия) - 4 300 ₽/м³</option>
+                                    <option value="350">М350 (ответственные конструкции) - 4 500 ₽/м³</option>
+                                    <option value="400">М400 (мосты, эстакады) - 4 800 ₽/м³</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Вкладка расчета по объему -->
+                        <div class="tab-content" id="volume-tab">
+                            <div class="form-group">
+                                <label for="concreteVolume" class="form-label">Объем бетона: <span id="volumeValue">5</span> м³</label>
+                                <input type="range" id="concreteVolume" class="range-slider" min="1" max="100" step="0.5" value="5">
+                                <div class="volume-display">
+                                    <span>1 м³</span>
+                                    <span>100 м³</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="concreteGrade2" class="form-label">Марка бетона</label>
+                                <select id="concreteGrade2" class="form-control">
+                                    <option value="100">М100 (тощий бетон) - 3 500 ₽/м³</option>
+                                    <option value="150">М150 (подбетонка) - 3 700 ₽/м³</option>
+                                    <option value="200" selected>М200 (фундаменты, стяжки) - 3 900 ₽/м³</option>
+                                    <option value="250">М250 (монолитные стены) - 4 100 ₽/м³</option>
+                                    <option value="300">М300 (фундаменты, перекрытия) - 4 300 ₽/м³</option>
+                                    <option value="350">М350 (ответственные конструкции) - 4 500 ₽/м³</option>
+                                    <option value="400">М400 (мосты, эстакады) - 4 800 ₽/м³</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deliveryDistance" class="form-label">Расстояние доставки (км)</label>
+                            <select id="deliveryDistance" class="form-control">
+                                <option value="0" selected>Самовывоз (0 км)</option>
+                                <option value="10">До 10 км (+ 500 ₽)</option>
+                                <option value="20">10-20 км (+ 1 000 ₽)</option>
+                                <option value="30">20-30 км (+ 1 500 ₽)</option>
+                                <option value="40">30-40 км (+ 2 000 ₽)</option>
+                                <option value="50">40-50 км (+ 2 500 ₽)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-calculator"></i> Рассчитать стоимость
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="results-box">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 30px;">Цены на бетон</h3>
+                    
+                    <div class="price-list">
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М100</div>
+                                <div class="grade-text">
+                                    <h4>М100</h4>
+                                    <p>Тощий бетон</p>
+                                </div>
+                            </div>
+                            <div class="price">3 500 ₽</div>
+                        </div>
+                        
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М150</div>
+                                <div class="grade-text">
+                                    <h4>М150</h4>
+                                    <p>Подбетонка</p>
+                                </div>
+                            </div>
+                            <div class="price">3 700 ₽</div>
+                        </div>
+                        
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М200</div>
+                                <div class="grade-text">
+                                    <h4>М200</h4>
+                                    <p>Фундаменты, стяжки</p>
+                                </div>
+                            </div>
+                            <div class="price">3 900 ₽</div>
+                        </div>
+                        
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М250</div>
+                                <div class="grade-text">
+                                    <h4>М250</h4>
+                                    <p>Монолитные стены</p>
+                                </div>
+                            </div>
+                            <div class="price">4 100 ₽</div>
+                        </div>
+                        
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М300</div>
+                                <div class="grade-text">
+                                    <h4>М300</h4>
+                                    <p>Фундаменты, перекрытия</p>
+                                </div>
+                            </div>
+                            <div class="price">4 300 ₽</div>
+                        </div>
+                        
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М350</div>
+                                <div class="grade-text">
+                                    <h4>М350</h4>
+                                    <p>Ответственные конструкции</p>
+                                </div>
+                            </div>
+                            <div class="price">4 500 ₽</div>
+                        </div>
+                        
+                        <div class="price-item">
+                            <div class="grade">
+                                <div class="grade-mark">М400</div>
+                                <div class="grade-text">
+                                    <h4>М400</h4>
+                                    <p>Мосты, эстакады</p>
+                                </div>
+                            </div>
+                            <div class="price">4 800 ₽</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-result" id="calculationResult">
+                        <div class="result-title">Итого к оплате:</div>
+                        <div class="result-value" id="resultValue">0 ₽</div>
+                        
+                        <div class="result-details">
+                            <div class="result-detail">
+                                <div class="label">Объем бетона</div>
+                                <div class="value" id="resultVolume">0 м³</div>
+                            </div>
+                            <div class="result-detail">
+                                <div class="label">Марка бетона</div>
+                                <div class="value" id="resultGrade">М200</div>
+                            </div>
+                            <div class="result-detail">
+                                <div class="label">Цена за м³</div>
+                                <div class="value" id="pricePerCube">0 ₽</div>
+                            </div>
+                            <div class="result-detail">
+                                <div class="label">Стоимость бетона</div>
+                                <div class="value" id="concreteCost">0 ₽</div>
+                            </div>
+                            <div class="result-detail">
+                                <div class="label">Доставка</div>
+                                <div class="value" id="deliveryCost">0 ₽</div>
+                            </div>
+                            <div class="result-detail">
+                                <div class="label">Итого</div>
+                                <div class="value" id="totalCost">0 ₽</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-actions">
+                            <button class="btn btn-secondary" id="addToCartBtn">
+                                <i class="fas fa-cart-plus"></i> Добавить в корзину
+                            </button>
+                                <button class="btn" id="orderNowBtn">
+                                    <i class="fas fa-shopping-cart"></i> Оформить заказ
+                                </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Composition Section -->
+    <section class="composition-section" id="composition">
+        <div class="container">
+            <div class="section-title">
+                <h2>Состав бетона</h2>
+                <p class="section-subtitle">Мы используем только проверенные компоненты от ведущих поставщиков</p>
+            </div>
+            
+            <div class="composition-intro">
+                <p>Качество бетона определяется точностью пропорций и чистотой компонентов. Мы сотрудничаем с проверенными поставщиками, которые поставляют сырье с собственных месторождений, что гарантирует стабильность состава и свойств бетона.</p>
+            </div>
+            
+            <div class="composition-grid">
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Цемент</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Марка</div>
+                            <div class="property-value">Портландцемент М500 Д0</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Михайловский цементный завод (Рязанская область)</div>
+                            <div class="origin-badge">Россия</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ООО "СтройЦемент" (партнер с 1995 года)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Щебень</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Тип и фракция</div>
+                            <div class="property-value">Гранитный, фракции 5-20 мм</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Карьер "Гранитный" (Ленинградская область)</div>
+                            <div class="origin-badge">Карелия</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ОАО "Гранит-Инвест" (партнер с 1990 года)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Песок</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Тип и модуль</div>
+                            <div class="property-value">Речной песок, модуль крупности 2.0-2.5</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Река Волга (Волгоградская область)</div>
+                            <div class="origin-badge">Волжский</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ЗАО "Волга-Песок" (партнер с 1988 года)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Добавки</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Тип</div>
+                            <div class="property-value">Пластификаторы, противоморозные добавки</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Завод химических реагентов (Московская область)</div>
+                            <div class="origin-badge">Собственное производство</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ООО "ХимСтройРесурс" (партнер с 2000 года)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="composition-note">
+                <p><strong>Примечание:</strong> Соотношение компонентов зависит от марки бетона и регулируется технологическими картами производства, которые разрабатывались и совершенствовались нашими технологами в течение 40 лет работы. Каждая партия бетона проходит лабораторный контроль.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Контакты</h2>
+                <p class="section-subtitle">Свяжитесь с нами удобным для вас способом</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Наши контакты</h3>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Адрес производства</h4>
+                            <p>Республика Ингушетия, Сунженский район, станица Троицкое, улица Шоссейная, дом 169</p>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Телефон</h4>
+                            <p>+7 (928) 917-40-24</p>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Режим работы</h4>
+                            <p>Пн-Пт: 8:00-20:00</p>
+                            <p>Сб: 9:00-18:00</p>
+                            <p>Вс: выходной</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://wa.me/89289174024" class="social-link whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://t.me/Vainakh_Beton_bot" class="social-link telegram" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.287420885378!2d44.958563!3d43.311463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE4JzQxLjMiTiA0NMKwNTcnMzAuOCJF!5e0!3m2!1sru!2sru!4v0!5m2!1sru!2sru" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>Вай Бетон</h2>
+                        <p>Производство качественного бетона с 1984 года</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Меню</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">Главная</a></li>
+                        <li><a href="./composition.html">Состав бетона</a></li>
+                        <li><a href="./calculator.html">Калькулятор</a></li>
+                        <li><a href="./contact.html">Контакты</a></li>
+                        <li><a href="./korzina.html" style="color: var(--secondary);">Корзина</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+                        <li><a href="mailto:info@vai-beton.ru">info@vai-beton.ru</a></li>
+                        <li>Москва, ул. Бетонная, 15</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Соцсети</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/79501234567" target="_blank">WhatsApp</a></li>
+                        <li><a href="https://t.me/vai_beton_bot" target="_blank">Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 1984-2023 ООО "Вай Бетон". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Experience Badge -->
+    <div class="experience-badge">
+        <div class="badge">
+            <div class="badge-number">40</div>
+            <div class="badge-text">Лет опыта</div>
+        </div>
+    </div>
+    
+    <script>
+        // Плавная загрузка страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+                
+                // Закрытие меню при клике на ссылку
+                document.querySelectorAll('.mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+            }
+            
+            // Обновление счетчика корзины при загрузке
+            updateCartCount();
+            
+            // Переключение вкладок калькулятора
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // Убираем активный класс у всех кнопок и контента
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Добавляем активный класс текущей кнопке и контенту
+                    btn.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Обновление значения ползунка объема
+            const volumeSlider = document.getElementById('concreteVolume');
+            const volumeValue = document.getElementById('volumeValue');
+            
+            if (volumeSlider && volumeValue) {
+                volumeSlider.addEventListener('input', () => {
+                    volumeValue.textContent = volumeSlider.value;
+                });
+            }
+            
+            // Расчет объема по габаритам
+            const lengthInput = document.getElementById('length');
+            const widthInput = document.getElementById('width');
+            const heightInput = document.getElementById('height');
+            const calculatedVolume = document.getElementById('calculatedVolume');
+            
+            function calculateVolumeFromDimensions() {
+                const length = parseFloat(lengthInput.value) || 0;
+                const width = parseFloat(widthInput.value) || 0;
+                const height = parseFloat(heightInput.value) || 0;
+                
+                const volume = length * width * height;
+                if (calculatedVolume) {
+                    calculatedVolume.textContent = volume.toFixed(2);
+                }
+                
+                return volume;
+            }
+            
+            // Обновление объема при изменении габаритов
+            if (lengthInput && widthInput && heightInput) {
+                lengthInput.addEventListener('input', calculateVolumeFromDimensions);
+                widthInput.addEventListener('input', calculateVolumeFromDimensions);
+                heightInput.addEventListener('input', calculateVolumeFromDimensions);
+            }
+            
+            // Цены за куб для каждой марки
+            const prices = {
+                100: 3500,
+                150: 3700,
+                200: 3900,
+                250: 4100,
+                300: 4300,
+                350: 4500,
+                400: 4800
+            };
+            
+            // Названия марок
+            const gradeNames = {
+                100: "М100",
+                150: "М150",
+                200: "М200",
+                250: "М250",
+                300: "М300",
+                350: "М350",
+                400: "М400"
+            };
+            
+            // Описания марок
+            const gradeDescriptions = {
+                100: "Тощий бетон",
+                150: "Подбетонка",
+                200: "Фундаменты, стяжки",
+                250: "Монолитные стены",
+                300: "Фундаменты, перекрытия",
+                350: "Ответственные конструкции",
+                400: "Мосты, эстакады"
+            };
+            
+            // Стоимость доставки по расстоянию
+            const deliveryPrices = {
+                0: 0,
+                10: 500,
+                20: 1000,
+                30: 1500,
+                40: 2000,
+                50: 2500
+            };
+            
+            // Описания доставки
+            const deliveryDescriptions = {
+                0: "Самовывоз",
+                10: "До 10 км",
+                20: "10-20 км",
+                30: "20-30 км",
+                40: "30-40 км",
+                50: "40-50 км"
+            };
+            
+            // Форматирование чисел
+            function formatNumber(num) {
+                return new Intl.NumberFormat('ru-RU').format(num);
+            }
+            
+            // Расчет стоимости
+            function calculateCost() {
+                // Определяем активную вкладку
+                const activeTab = document.querySelector('.tab-content.active');
+                if (!activeTab) return;
+                
+                const activeTabId = activeTab.id;
+                let volume, grade;
+                
+                if (activeTabId === 'dimensions-tab') {
+                    // Расчет по габаритам
+                    volume = calculateVolumeFromDimensions();
+                    grade = parseInt(document.getElementById('concreteGrade1').value);
+                } else {
+                    // Расчет по объему
+                    volume = parseFloat(volumeSlider.value);
+                    grade = parseInt(document.getElementById('concreteGrade2').value);
+                }
+                
+                const distance = parseInt(document.getElementById('deliveryDistance').value);
+                
+                const pricePerCube = prices[grade];
+                const concreteCost = pricePerCube * volume;
+                const deliveryCost = deliveryPrices[distance];
+                const totalCost = concreteCost + deliveryCost;
+                
+                // Обновление результатов
+                document.getElementById('resultVolume').textContent = volume.toFixed(2) + ' м³';
+                document.getElementById('resultGrade').textContent = gradeNames[grade];
+                document.getElementById('pricePerCube').textContent = formatNumber(pricePerCube) + ' ₽';
+                document.getElementById('concreteCost').textContent = formatNumber(Math.round(concreteCost)) + ' ₽';
+                document.getElementById('deliveryCost').textContent = formatNumber(deliveryCost) + ' ₽';
+                document.getElementById('totalCost').textContent = formatNumber(Math.round(totalCost)) + ' ₽';
+                document.getElementById('resultValue').textContent = formatNumber(Math.round(totalCost)) + ' ₽';
+                
+                // Показываем результат
+                document.getElementById('calculationResult').classList.add('active');
+                
+                // Прокручиваем к результату
+                setTimeout(() => {
+                    const resultElement = document.getElementById('calculationResult');
+                    if (resultElement) {
+                        resultElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'nearest' 
+                        });
+                    }
+                }, 300);
+            }
+            
+            // Обработка формы калькулятора
+            const calculatorForm = document.getElementById('concreteCalculator');
+            if (calculatorForm) {
+                calculatorForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    calculateCost();
+                });
+            }
+            
+            // Обновление результата при изменении значений
+            const gradeSelect1 = document.getElementById('concreteGrade1');
+            const gradeSelect2 = document.getElementById('concreteGrade2');
+            const deliverySelect = document.getElementById('deliveryDistance');
+            
+            if (gradeSelect1) {
+                gradeSelect1.addEventListener('change', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            if (gradeSelect2) {
+                gradeSelect2.addEventListener('change', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            if (volumeSlider) {
+                volumeSlider.addEventListener('input', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            if (lengthInput) {
+                lengthInput.addEventListener('input', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            if (widthInput) {
+                widthInput.addEventListener('input', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            if (heightInput) {
+                heightInput.addEventListener('input', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            if (deliverySelect) {
+                deliverySelect.addEventListener('change', () => {
+                    if (document.getElementById('calculationResult').classList.contains('active')) {
+                        calculateCost();
+                    }
+                });
+            }
+            
+            // Функция добавления расчета в корзину
+            function addToCartMain() {
+                const activeTab = document.querySelector('.tab-content.active');
+                if (!activeTab) return;
+                
+                const activeTabId = activeTab.id;
+                let volume, dimensionsText = '';
+                
+                if (activeTabId === 'dimensions-tab') {
+                    volume = calculateVolumeFromDimensions();
+                    const length = parseFloat(lengthInput.value) || 0;
+                    const width = parseFloat(widthInput.value) || 0;
+                    const height = parseFloat(heightInput.value) || 0;
+                    dimensionsText = `Габариты: ${length.toFixed(2)}м × ${width.toFixed(2)}м × ${height.toFixed(2)}м`;
+                } else {
+                    volume = parseFloat(volumeSlider.value);
+                    dimensionsText = `Объем: ${volume.toFixed(2)} м³`;
+                }
+                
+                // Получаем выбранную марку бетона
+                const grade = activeTabId === 'dimensions-tab' 
+                    ? parseInt(document.getElementById('concreteGrade1').value)
+                    : parseInt(document.getElementById('concreteGrade2').value);
+                
+                // Получаем выбранную доставку
+                const distance = parseInt(document.getElementById('deliveryDistance').value);
+                
+                const pricePerCube = prices[grade];
+                const concreteCost = pricePerCube * volume;
+                const deliveryCost = deliveryPrices[distance];
+                
+                // Создаем объект товара
+                const cartItem = {
+                    id: 'concrete_' + Date.now(),
+                    type: 'concrete',
+                    name: `Бетон ${gradeNames[grade]}`,
+                    description: `${gradeDescriptions[grade]}. ${dimensionsText}`,
+                    price: pricePerCube,
+                    quantity: parseFloat(volume.toFixed(2)),
+                    unit: 'м³',
+                    total: Math.round(concreteCost)
+                };
+                
+                // Сохраняем в localStorage
+                let cart = JSON.parse(localStorage.getItem('vaiBetonCart')) || [];
+                
+                // Проверяем, есть ли уже бетон в корзине
+                const existingConcreteIndex = cart.findIndex(i => i.type === 'concrete');
+                
+                if (existingConcreteIndex !== -1) {
+                    // Заменяем существующий бетон
+                    cart[existingConcreteIndex] = cartItem;
+                } else {
+                    // Добавляем новый товар
+                    cart.push(cartItem);
+                }
+                
+                // Добавляем доставку отдельным товаром, если она выбрана и ее еще нет
+                if (distance > 0) {
+                    const existingDeliveryIndex = cart.findIndex(i => i.type === 'delivery');
+                    const deliveryItem = {
+                        id: 'delivery_' + Date.now(),
+                        type: 'delivery',
+                        name: 'Доставка',
+                        description: deliveryDescriptions[distance],
+                        price: deliveryCost,
+                        quantity: 1,
+                        unit: 'заказ',
+                        total: deliveryCost
+                    };
+                    
+                    if (existingDeliveryIndex !== -1) {
+                        cart[existingDeliveryIndex] = deliveryItem;
+                    } else {
+                        cart.push(deliveryItem);
+                    }
+                } else {
+                    // Удаляем доставку из корзины, если она была
+                    cart = cart.filter(item => item.type !== 'delivery');
+                }
+                
+                localStorage.setItem('vaiBetonCart', JSON.stringify(cart));
+                
+                // Показываем уведомление
+                showCartNotification(cartItem, deliveryCost > 0);
+                
+                // Обновляем счетчик
+                updateCartCount();
+            }
+            
+            // Показ уведомления о добавлении в корзину
+            function showCartNotification(item, hasDelivery) {
+                // Удаляем существующие уведомления
+                document.querySelectorAll('.cart-notification').forEach(el => el.remove());
+                
+                // Создаем элемент уведомления
+                const notification = document.createElement('div');
+                notification.className = 'cart-notification';
+                notification.innerHTML = `
+                    <div style="
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 15px;
+                    ">
+                        <div style="
+                            width: 40px;
+                            height: 40px;
+                            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-right: 15px;
+                            color: white;
+                        ">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--primary-dark); font-size: 1.2rem;">Добавлено в корзину!</h4>
+                        </div>
+                    </div>
+                    <p style="margin: 0 0 15px 0; color: var(--dark); font-size: 1rem;">
+                        <strong>${item.name}</strong><br>
+                        ${item.description}<br>
+                        <span style="color: var(--primary); font-weight: 600;">
+                            ${formatNumber(item.total)} ₽
+                        </span>
+                        ${hasDelivery ? '<br>+ доставка' : ''}
+                    </p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="korzina.html" style="
+                            flex: 1;
+                            padding: 12px;
+                            background: var(--primary);
+                            color: white;
+                            text-align: center;
+                            border-radius: var(--border-radius);
+                            text-decoration: none;
+                            font-weight: 600;
+                            font-size: 0.95rem;
+                        ">Перейти в корзину</a>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
+                            padding: 12px 20px;
+                            background: var(--gray-light);
+                            border: none;
+                            border-radius: var(--border-radius);
+                            cursor: pointer;
+                            font-weight: 600;
+                        ">Закрыть</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Автоматически скрываем через 5 секунд
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 5000);
+            }
+            
+            // Обновление счетчика корзины
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('vaiBetonCart')) || [];
+                const count = cart.length;
+                
+                document.querySelectorAll('.cart-count').forEach(el => {
+                    el.textContent = `(${count})`;
+                });
+            }
+            
+            // Функция оформления заказа (добавляет в корзину и переходит на страницу оформления)
+function orderNow() {
+    // Сначала добавляем товар в корзину
+    addToCartMain();
+    
+    // Показываем уведомление о переходе к оформлению
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        ">
+            <div style="
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(135deg, var(--primary-light), var(--primary));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                color: white;
+            ">
+                <i class="fas fa-check"></i>
+            </div>
+            <div>
+                <h4 style="margin: 0; color: var(--primary-dark); font-size: 1.2rem;">Товар добавлен в корзину!</h4>
+            </div>
+        </div>
+        <p style="margin: 0 0 15px 0; color: var(--dark); font-size: 1rem;">
+            Переходим к оформлению заказа...
+        </p>
+        <div style="display: flex; gap: 10px;">
+            <a href="korzina.html" style="
+                flex: 1;
+                padding: 12px;
+                background: var(--primary);
+                color: white;
+                text-align: center;
+                border-radius: var(--border-radius);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.95rem;
+            ">Перейти сейчас</a>
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
+                padding: 12px 20px;
+                background: var(--gray-light);
+                border: none;
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                font-weight: 600;
+            ">Остаться</button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Автоматический переход через 2 секунды
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+        window.location.href = 'korzina.html';
+    }, 2000);
+}
+
+// Кнопка добавления в корзину
+const addToCartBtn = document.getElementById('addToCartBtn');
+if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', () => {
+        addToCartMain();
+    });
+}
+
+// Кнопка оформления заказа
+const orderNowBtn = document.getElementById('orderNowBtn');
+if (orderNowBtn) {
+    orderNowBtn.addEventListener('click', () => {
+        orderNow();
+    });
+}
+            
+            // Плавная прокрутка
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Инициализация калькулятора при загрузке
+            if (lengthInput && widthInput && heightInput) {
+                calculateVolumeFromDimensions();
+            }
+            
+            // Изменение header при скролле
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (header) {
+                    if (window.scrollY > 100) {
+                        header.style.padding = '10px 0';
+                        header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                    } else {
+                        header.style.padding = '15px 0';
+                        header.style.boxShadow = 'var(--shadow)';
+                    }
+                }
+            });
+            
+            // Плавный переход между страницами
+            document.querySelectorAll('a').forEach(link => {
+                if (link.href && link.href.includes('.html') && !link.href.includes('#') && !link.target) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Добавляем анимацию исчезновения
+                        document.body.style.opacity = '0';
+                        document.body.style.transition = 'opacity 0.3s ease-out';
+                        
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 300);
+                    });
+                }
+            });
+        });
+        
+        // Анимация при загрузке страницы
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+[file content end]

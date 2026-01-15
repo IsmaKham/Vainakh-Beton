@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Состав бетона | Вай Бетон</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A5C8B;
+            --primary-dark: #1A3A5F;
+            --primary-light: #4A8BC5;
+            --secondary: #C8A165;
+            --secondary-dark: #A88345;
+            --accent: #E63946;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --gray-light: #E9ECEF;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Плавные переходы */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fefefe;
+            overflow-x: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+            animation: slideUp 0.8s ease-out both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: var(--primary-dark);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 30px auto 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(42, 92, 139, 0.2);
+        }
+        
+        .logo-icon i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        
+        .logo-text span {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 90px;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+        
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+        }
+        
+        .mobile-menu ul li {
+            margin: 0 0 20px 0;
+        }
+        
+        .mobile-menu ul li a {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 10px 0;
+        }
+        
+        .mobile-menu ul li a:hover {
+            color: var(--secondary);
+            padding-left: 10px;
+        }
+        
+        /* Composition */
+        .composition-section {
+            background-color: white;
+        }
+        
+        .composition-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .composition-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        .composition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .composition-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .composition-card:nth-child(1) { animation-delay: 0.1s; }
+        .composition-card:nth-child(2) { animation-delay: 0.2s; }
+        .composition-card:nth-child(3) { animation-delay: 0.3s; }
+        .composition-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .composition-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .composition-card-header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .composition-card-header h4 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 0;
+        }
+        
+        .composition-card-body {
+            padding: 30px;
+        }
+        
+        .composition-property {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .composition-property:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .property-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .property-value {
+            color: var(--dark);
+        }
+        
+        .origin-badge {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .composition-note {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        
+        /* Марки бетона */
+        .grades-section {
+            background-color: var(--light);
+            padding: 100px 0;
+        }
+        
+        .grades-table {
+            width: 100%;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 50px;
+        }
+        
+        .grades-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .grades-table th {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .grades-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .grades-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .grades-table tr:hover {
+            background-color: rgba(42, 92, 139, 0.03);
+        }
+        
+        .grade-tag {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+        
+        /* Исправление для скрытия мобильного меню на десктопе */
+        @media (min-width: 993px) {
+            .mobile-menu {
+                display: none !important;
+            }
+            
+            .mobile-menu-btn {
+                display: none !important;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                display: none !important;
+            }
+            
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .composition-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .grades-table {
+                overflow-x: auto;
+            }
+            
+            .grades-table table {
+                min-width: 600px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .composition-card-header, 
+            .composition-card-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Вай Бетон</h1>
+                    <span>С 1984 года</span>
+                </div>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="composition.html" style="color: var(--secondary);">Состав</a></li>
+                    <li><a href="calculator.html">Калькулятор</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                    <li><a href="./korzina.html" style="color: var(--secondary);">Корзина</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="mobile-menu" id="mobileMenu">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="composition.html" style="color: var(--secondary);">Состав</a></li>
+                    <li><a href="calculator.html">Калькулятор</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                    <li><a href="./korzina.html" style="color: var(--secondary);">Корзина</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Composition Section -->
+    <section class="composition-section" style="padding-top: 180px;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Состав бетона</h2>
+                <p class="section-subtitle">Мы используем только проверенные компоненты от ведущих поставщиков</p>
+            </div>
+            
+            <div class="composition-intro">
+                <p>Качество бетона определяется точностью пропорций и чистотой компонентов. Мы сотрудничаем с проверенными поставщиками, которые поставляют сырье с собственных месторождений, что гарантирует стабильность состава и свойств бетона.</p>
+            </div>
+            
+            <div class="composition-grid">
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Цемент</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Марка</div>
+                            <div class="property-value">Портландцемент М500 Д0</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Михайловский цементный завод (Рязанская область)</div>
+                            <div class="origin-badge">Россия</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ООО "СтройЦемент" (партнер с 1995 года)</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Характеристики</div>
+                            <div class="property-value">Прочность на сжатие 50 МПа, начало схватывания 2 часа</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Щебень</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Тип и фракция</div>
+                            <div class="property-value">Гранитный, фракции 5-20 мм</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Карьер "Гранитный" (Ленинградская область)</div>
+                            <div class="origin-badge">Карелия</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ОАО "Гранит-Инвест" (партнер с 1990 года)</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Характеристики</div>
+                            <div class="property-value">Лещадность 12%, марка по дробимости 1200, морозостойкость F300</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Песок</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Тип и модуль</div>
+                            <div class="property-value">Речной песок, модуль крупности 2.0-2.5</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Река Волга (Волгоградская область)</div>
+                            <div class="origin-badge">Волжский</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ЗАО "Волга-Песок" (партнер с 1988 года)</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Характеристики</div>
+                            <div class="property-value">Содержание глинистых частиц менее 1%, влажность 3-5%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="composition-card">
+                    <div class="composition-card-header">
+                        <h4>Добавки</h4>
+                    </div>
+                    <div class="composition-card-body">
+                        <div class="composition-property">
+                            <div class="property-label">Тип</div>
+                            <div class="property-value">Пластификаторы, противоморозные добавки</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Происхождение</div>
+                            <div class="property-value">Завод химических реагентов (Московская область)</div>
+                            <div class="origin-badge">Собственное производство</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Поставщик</div>
+                            <div class="property-value">ООО "ХимСтройРесурс" (партнер с 2000 года)</div>
+                        </div>
+                        <div class="composition-property">
+                            <div class="property-label">Характеристики</div>
+                            <div class="property-value">Пластификатор С-3, противоморозная добавка ПМД-5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="composition-note">
+                <p><strong>Примечание:</strong> Соотношение компонентов зависит от марки бетона и регулируется технологическими картами производства, которые разрабатывались и совершенствовались нашими технологами в течение 40 лет работы. Каждая партия бетона проходит лабораторный контроль.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Марки бетона -->
+    <section class="grades-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Технические характеристики марок</h2>
+                <p class="section-subtitle">Подробные характеристики каждой марки бетона</p>
+            </div>
+            
+            <div class="grades-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Марка бетона</th>
+                            <th>Класс прочности</th>
+                            <th>Прочность на сжатие</th>
+                            <th>Область применения</th>
+                            <th>Водонепроницаемость</th>
+                            <th>Морозостойкость</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="grade-tag">М100</span></td>
+                            <td>В7.5</td>
+                            <td>7.5 МПа</td>
+                            <td>Тощий бетон, подготовительные работы</td>
+                            <td>W2</td>
+                            <td>F50</td>
+                        </tr>
+                        <tr>
+                            <td><span class="grade-tag">М150</span></td>
+                            <td>В12.5</td>
+                            <td>12.5 МПа</td>
+                            <td>Подбетонка, фундаменты под легкие конструкции</td>
+                            <td>W2</td>
+                            <td>F50</td>
+                        </tr>
+                        <tr>
+                            <td><span class="grade-tag">М200</span></td>
+                            <td>В15</td>
+                            <td>15 МПа</td>
+                            <td>Фундаменты, стяжки полов, отмостки</td>
+                            <td>W4</td>
+                            <td>F100</td>
+                        </tr>
+                        <tr>
+                            <td><span class="grade-tag">М250</span></td>
+                            <td>В20</td>
+                            <td>20 МПа</td>
+                            <td>Монолитные стены, лестницы, заборы</td>
+                            <td>W4</td>
+                            <td>F100</td>
+                        </tr>
+                        <tr>
+                            <td><span class="grade-tag">М300</span></td>
+                            <td>В22.5</td>
+                            <td>22.5 МПа</td>
+                            <td>Фундаменты, перекрытия, колонны</td>
+                            <td>W6</td>
+                            <td>F150</td>
+                        </tr>
+                        <tr>
+                            <td><span class="grade-tag">М350</span></td>
+                            <td>В25</td>
+                            <td>25 МПа</td>
+                            <td>Ответственные конструкции, монолитные стены многоэтажек</td>
+                            <td>W8</td>
+                            <td>F200</td>
+                        </tr>
+                        <tr>
+                            <td><span class="grade-tag">М400</span></td>
+                            <td>В30</td>
+                            <td>30 МПа</td>
+                            <td>Мосты, эстакады, гидротехнические сооружения</td>
+                            <td>W10</td>
+                            <td>F300</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>Вай Бетон</h2>
+                        <p>Производство качественного бетона с 1984 года</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Меню</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="composition.html">Состав бетона</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="contact.html">Контакты</a></li>
+                        <li><a href="./korzina.html" style="color: var(--secondary);">Корзина</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+                        <li><a href="mailto:info@vai-beton.ru">info@vai-beton.ru</a></li>
+                        <li>Москва, ул. Бетонная, 15</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Соцсети</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/79501234567" target="_blank">WhatsApp</a></li>
+                        <li><a href="https://t.me/vai_beton_bot" target="_blank">Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 1984-2023 ООО "Вай Бетон". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Плавная загрузка страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+                
+                // Закрытие меню при клике на ссылку
+                document.querySelectorAll('.mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+            }
+            
+            // Плавная прокрутка
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Изменение header при скролле
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (header) {
+                    if (window.scrollY > 100) {
+                        header.style.padding = '10px 0';
+                        header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                    } else {
+                        header.style.padding = '15px 0';
+                        header.style.boxShadow = 'var(--shadow)';
+                    }
+                }
+            });
+            
+            // Плавный переход между страницами
+            document.querySelectorAll('a').forEach(link => {
+                if (link.href && link.href.includes('.html') && !link.href.includes('#') && !link.target) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Добавляем анимацию исчезновения
+                        document.body.style.opacity = '0';
+                        document.body.style.transition = 'opacity 0.3s ease-out';
+                        
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 300);
+                    });
+                }
+            });
+        });
+        
+        // Анимация при загрузке страницы
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
